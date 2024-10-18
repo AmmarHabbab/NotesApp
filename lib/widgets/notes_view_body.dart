@@ -17,9 +17,6 @@ class NotesViewBody extends StatelessWidget {
             height: 25,
           ),
           CustomAppBar(),
-          SizedBox(
-            height: 20,
-          ),
           Expanded(
               child:
                   NotesListView()), // to use expanded u must use with widgets that are flex like column and row but u cant use it in stack for example cuz its not flex and be aware that sometimes this may not throw and exception on screen
