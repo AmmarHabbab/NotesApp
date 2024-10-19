@@ -10,7 +10,8 @@ import 'models/note_model.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox(kNotesBox);
+  await Hive.openBox<NoteModel>(
+      kNotesBox); // always specify the box data type or an exception will happen
   Hive.registerAdapter(NoteModelAdapter());
   Bloc.observer = SimpleBlocObserver();
   runApp(const NotesApp());
