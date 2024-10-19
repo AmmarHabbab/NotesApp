@@ -13,27 +13,29 @@ class AddNoteButtonSheet extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           AddNoteCubit(), // use cubit only on the screen that need it so u dont consume memory without need
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: BlocConsumer<AddNoteCubit, AddNoteState>(
-          listener: (context, state) {
-            if (state is AddNoteFailure) {
-              print('Failed! ${state.errMessage}');
-            }
+      child: BlocConsumer<AddNoteCubit, AddNoteState>(
+        listener: (context, state) {
+          if (state is AddNoteFailure) {
+            print('Failed! ${state.errMessage}');
+          }
 
-            if (state is AddNoteSuccess) {
-              Navigator.pop(context);
-            }
-          },
-          builder: (context, state) {
-            return ModalProgressHUD(
-                inAsyncCall: state is AddNoteLoading ? true : false,
-                child: const SingleChildScrollView(
-                    child:
-                        AddNoteForm())); // ModalProgressHUD takes certain shape on the screen and it doesnt work that it be inside a single child scroll view so the single child scroll view should be inside the modalprogesshud
-          },
-        ),
+          if (state is AddNoteSuccess) {
+            Navigator.pop(context);
+          }
+        },
+        builder: (context, state) {
+          return AbsorbPointer(
+            absorbing: state is AddNoteLoading ? true : false,
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: SingleChildScrollView(
+                  // also the above padding messes with the modal progress Hud so we put it under
+                  child: AddNoteForm()),
+            ),
+          ); // ModalProgressHUD takes certain shape on the screen and it doesnt work that it be inside a single child scroll view so the single child scroll view should be inside the modalprogesshud
+        },
       ),
     );
   }
 }
+// the modal progress hud increase the height when true solution is either sized box with a fixed size or use something else on the button for an example considering the loading is related to the button only
