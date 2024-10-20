@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../cubits/add_note/add_note_cubit.dart';
+import '../../cubits/notes/notes_cubit.dart';
 import 'add_note_form.dart';
 
 class AddNoteButtonSheet extends StatelessWidget {
@@ -15,11 +16,10 @@ class AddNoteButtonSheet extends StatelessWidget {
           AddNoteCubit(), // use cubit only on the screen that need it so u dont consume memory without need
       child: BlocConsumer<AddNoteCubit, AddNoteState>(
         listener: (context, state) {
-          if (state is AddNoteFailure) {
-            print('Failed! ${state.errMessage}');
-          }
+          if (state is AddNoteFailure) {}
 
           if (state is AddNoteSuccess) {
+            BlocProvider.of<NotesCubit>(context).fetchAllNotes();
             Navigator.pop(context);
           }
         },
