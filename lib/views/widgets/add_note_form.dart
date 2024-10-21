@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 
+import 'colors_list_view.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 
@@ -49,6 +50,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
             hint: 'Content',
             maxLines: 5,
           ),
+          const SizedBox(
+            height: 32,
+          ),
           const ColorsListView(),
           const SizedBox(
             height: 32,
@@ -83,37 +87,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
             height: 16,
           ),
         ],
-      ),
-    );
-  }
-}
-
-class ColorItem extends StatelessWidget {
-  const ColorItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const CircleAvatar(
-      radius: 38,
-      backgroundColor: Colors.blue,
-    );
-  }
-}
-
-class ColorsListView extends StatelessWidget {
-  const ColorsListView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 38 *
-          2, // we should give height here so i can determine the size of the list view
-      child: ListView.builder(
-        itemCount: 10,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return const ColorItem();
-        },
       ),
     );
   }
