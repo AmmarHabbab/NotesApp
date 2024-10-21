@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+//import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../cubits/add_note/add_note_cubit.dart';
 import '../../cubits/notes/notes_cubit.dart';
@@ -42,3 +42,4 @@ class AddNoteButtonSheet extends StatelessWidget {
   }
 }
 // the modal progress hud increase the height when true solution is either sized box with a fixed size or use something else on the button for an example considering the loading is related to the button only
+
