@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/models/note_model.dart';
 
 @immutable
 sealed class NotesState {}

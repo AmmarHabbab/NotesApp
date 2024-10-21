@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/constants.dart';
 //import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../cubits/add_note/add_note_cubit.dart';
@@ -21,6 +22,7 @@ class AddNoteButtonSheet extends StatelessWidget {
           if (state is AddNoteSuccess) {
             BlocProvider.of<NotesCubit>(context).fetchAllNotes();
             Navigator.pop(context);
+            showSnackBar(context, message: 'Note Added Successfully');
           }
         },
         builder: (context, state) {

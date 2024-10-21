@@ -5,6 +5,8 @@ import 'package:notes_app/cubits/notes/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
+import '../../constants.dart';
+
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.note});
 
@@ -44,6 +46,7 @@ class NoteItem extends StatelessWidget {
                   note.delete();
 
                   BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                  showSnackBar(context, message: 'Note Deleted Successfully');
                 },
                 icon: const Icon(
                   //Icons.delete,

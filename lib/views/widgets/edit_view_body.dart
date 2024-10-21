@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/notes/notes_cubit.dart';
 import 'package:notes_app/views/widgets/custom_app_bar.dart';
 import 'package:notes_app/views/widgets/custom_text_field.dart';
+import 'package:notes_app/views/widgets/edit_note_color_list_view.dart';
 
+import '../../constants.dart';
 import '../../models/note_model.dart';
 
 class EditNoteViewBody extends StatefulWidget {
@@ -33,6 +35,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               widget.note.save();
               BlocProvider.of<NotesCubit>(context).fetchAllNotes();
               Navigator.pop(context);
+              showSnackBar(context, message: 'Note Modified Successfully');
             },
             title: 'Edit Note',
             icon: Icons.check,
@@ -56,6 +59,10 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             hint: widget.note.subTitle,
             maxLines: 5,
           ),
+          const SizedBox(
+            height: 32,
+          ),
+          EditNoteColorList(note: widget.note),
         ],
       ),
     );
